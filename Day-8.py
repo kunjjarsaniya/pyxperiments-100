@@ -1,7 +1,8 @@
 # -----------------------------------------------
-# 📌 Importing the necessary library
+# World Count Tool
 # -----------------------------------------------
 
+# 📌 Importing the necessary library
 import re
 
 def count_words(text):

@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block content %}
+    <h2 class="mb-4">📚 Recent Posts</h2>
+    {% for post in posts %}
+        <div class="card mb-3">
+            <div class="card-body">
+                <h5 class="card-title">{{ post.title }}</h5>
+                <p class="card-text">{{ post.content }}</p>
+            </div>
+        </div>
+    {% else %}
+        <p class="text-muted">No posts yet. Click "Create Post" to start.</p>
+    {% endfor %}
+{% endblock %}

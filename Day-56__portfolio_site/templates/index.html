@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My Portfolio</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        body { font-family: Arial; background-color: #f9f9f9; }
+        .container { width: 90%; margin: auto; padding: 20px; }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .header h1 {
+            margin: 0;
+        }
+        .add-project-form {
+            background: #fff;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            padding: 20px;
+            max-width: 500px;
+            margin-bottom: 30px;
+        }
+        .add-project-form label {
+            display: block;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+        .add-project-form input[type="text"],
+        .add-project-form textarea {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+        }
+        .add-project-form textarea {
+            resize: vertical;
+            height: 100px;
+        }
+        .add-project-form button {
+            margin-top: 15px;
+            background: #28a745;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        .message {
+            max-width: 500px;
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        .error {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        .success {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        .card {
+            background: #fff;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            padding: 15px;
+            margin: 10px;
+            display: inline-block;
+            width: 250px;
+            vertical-align: top;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            transition: transform 0.2s ease;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        .card img {
+            width: 100%;
+            border-radius: 5px;
+        }
+        .card h3 { margin-top: 10px; }
+        .card p { font-size: 0.9em; color: #333; }
+        .card a {
+            display: inline-block;
+            margin-top: 10px;
+            text-decoration: none;
+            background: #007BFF;
+            color: white;
+            padding: 8px 12px;
+            border-radius: 4px;
+        }
+        .no-projects {
+            font-size: 1.2em;
+            color: #666;
+            text-align: center;
+            margin-top: 50px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>👋 Welcome to My Portfolio</h1>
+        </div>
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="message {{ category }}">{{ message }}</div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+        <form class="add-project-form" method="POST" action="{{ url_for('home') }}">
+            <label for="title">Project Title</label>
+            <input type="text" id="title" name="title" required>
+
+            <label for="description">Description</label>
+            <textarea id="description" name="description" required></textarea>
+
+            <label for="image">Image Path (relative to static folder)</label>
+            <input type="text" id="image" name="image" placeholder="e.g. images/project.png" required>
+
+            <label for="link">Project Link (URL)</label>
+            <input type="text" id="link" name="link" required>
+
+            <button type="submit">Add Project</button>
+        </form>
+        {% if projects %}
+            {% for project in projects %}
+                <div class="card">
+                    <img src="{{ url_for('static', filename=project.image) }}" alt="Project Image">
+                    <h3>{{ project.title }}</h3>
+                    <p>{{ project.description }}</p>
+                    <a href="{{ project.link }}" target="_blank">🔗 View Project</a>
+                </div>
+            {% endfor %}
+        {% else %}
+            <p class="no-projects">❌ No projects found. Check your JSON file.</p>
+        {% endif %}
+    </div>
+</body>
+</html>

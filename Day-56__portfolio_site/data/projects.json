@@ -1,0 +1,8 @@
+[
+  {
+    "title": "YouTube Video Downloader",
+    "description": "A Python GUI app to download YouTube videos using PyTube and Tkinter.",
+    "image": "images/youtube.png",
+    "link": "https://github.com/yourusername/youtube-downloader"
+  }
+]

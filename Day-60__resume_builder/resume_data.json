@@ -1,0 +1,9 @@
+{
+  "name": "Kunal Patel",
+  "email": "kunal.patel1996@gmail.com",
+  "phone": "+91-9876543210",
+  "summary": "A passionate software developer from Gujarat with a strong foundation in Python, web development, and data analysis. Committed to delivering clean, efficient, and scalable code solutions.",
+  "education": "B.E. in Computer Engineering, L.D. College of Engineering, Ahmedabad (2018)",
+  "experience": "Software Developer at InfyTech Solutions, Ahmedabad (2019–Present)\n- Developed custom ERP modules using Django\n- Integrated payment gateways for client websites\n- Collaborated with UI designers to enhance UX\n\nIntern at Gujarat Informatics Ltd (2018)\n- Assisted in backend development for government e-governance platform",
+  "skills": "Python, Django, HTML, CSS, JavaScript, SQL, Git, REST APIs, Bootstrap"
+}
